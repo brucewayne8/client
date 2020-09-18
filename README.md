@@ -20,20 +20,15 @@ go  - 1.13.8
 
 ### format for GET call :
 
-    client GET {url}
-
-    Example:  ```
-    client GET "https://jsonplaceholder.typicode.com/posts/1"
-    ```
+  client GET {url} 
+  
+  Example:  ```client GET "https://jsonplaceholder.typicode.com/posts/1"```
 
 ### format for POST call: 
 
-    client POST {url} data
-
-    format of data is "field1=value1&&field2=value2&&field3=value3"
-
-    Example:   ```
-    client POST "https://jsonplaceholder.typicode.com/posts/" "title=Brucewayne&&description=Batman&&Status=Single"
-    ```
+  client POST {url} data
+  format of data is "field1=value1&&field2=value2&&field3=value3"
+   
+  Example:   ```client POST "https://jsonplaceholder.typicode.com/posts/" "title=Brucewayne&&description=Batman&&Status=Single"```
 
 
