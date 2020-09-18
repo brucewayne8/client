@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func readResponse(resBody io.Reader) {
+func readResponse(resBody io.Reader) { // reads the response body and prints to terminal
 	body, err := ioutil.ReadAll(resBody)
 
 	if err != nil {
@@ -21,7 +21,7 @@ func readResponse(resBody io.Reader) {
 	fmt.Println(string(body))
 }
 
-func get(url string) {
+func get(url string) { // get func
 	res, err := http.Get(url)
 	if err != nil {
 		panic(err)
@@ -30,7 +30,7 @@ func get(url string) {
 	readResponse(res.Body)
 }
 
-func post(url string, data string) {
+func post(url string, data string) { //post func
 	parts := strings.Split(data, "&&")
 	leng := len(parts)
 
@@ -59,10 +59,16 @@ func post(url string, data string) {
 }
 
 func main() {
+	if len(os.Args) != 3 && len(os.Args) != 4 {
+		panic("Give the arguments in the  mentioned format")
+	}
 	method, url := os.Args[1], os.Args[2]
 	if method == "GET" {
 		get(url) // calls get func
 	} else if method == "POST" {
+		if len(os.Args) != 4 {
+			panic("Give the 4 arguments including executable file  for POST call")
+		}
 		data := os.Args[3]
 		post(url, data) // calls post func
 	}
