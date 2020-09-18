@@ -4,11 +4,22 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
 )
+
+func readResponse(resBody io.Reader) {
+	body, err := ioutil.ReadAll(resBody)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(string(body))
+}
 
 func get(url string) {
 	res, err := http.Get(url)
@@ -16,14 +27,7 @@ func get(url string) {
 		panic(err)
 	}
 	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(string(body))
+	readResponse(res.Body)
 }
 
 func post(url string, data string) {
@@ -51,14 +55,7 @@ func post(url string, data string) {
 		panic(err)
 	}
 	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(string(body))
+	readResponse(res.Body)
 }
 
 func main() {
