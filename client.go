@@ -1,10 +1,27 @@
 package main
 
 import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
 )
 
-func get(url string) {}
+func get(url string) {
+	res, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(string(body))
+}
 
 func post(url string, data string) {}
 
