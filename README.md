@@ -31,4 +31,11 @@ go  - 1.13.8
    
   Example:   ```client POST "https://jsonplaceholder.typicode.com/posts/" "title=Brucewayne&&description=Batman&&Status=Single"```
 
+### POST CALL using json file as body:
+
+  client POST {url} FILE path
+  here path can be relative or absolute.
+
+  Example:  ```client POST https://jsonplaceholder.typicode.com/posts/ FILE postBOdy.json```
+
 
